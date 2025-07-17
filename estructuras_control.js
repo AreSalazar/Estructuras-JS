@@ -40,7 +40,7 @@ function notaFinal(examen, tareas, asistencia, investigation) {
 
 alumnos.forEach((datos) => { //datos es el objeto actual
     // Imprimiendo la función (notaFinal) con sus respectivos parámetros (examen,tareas,asistencia,investigation) por medio del objeto creado (datos) 
-    console.log("Alumno: " + datos.nombre + " Carnet: " + datos.carnet + " Promedio: " + notaFinal(datos.examen, datos.tareas, datos.asistencia, datos.investigation).toFixed(2)); // toFixed es para que quede con 2 decimales
+    console.log("Alumno: " + datos.nombre + " | Carnet: " + datos.carnet + " | Promedio: " + notaFinal(datos.examen, datos.tareas, datos.asistencia, datos.investigation).toFixed(2)); // toFixed es para que quede con 2 decimales
 })
 
 
@@ -95,6 +95,41 @@ function numMayor(valor1, valor2) {
 console.log("El número mayor es: " + numMayor(numero1, numero2));
 
 
+// EJERCICIO 5: Realizar una función para una tienda de coches en donde se deberá calcular: Si el coche a la venta es un FORD FIESTA, aplicar un 5% de descuento en la compra. Si el
+// coche a la venta es un FORD FOCUS, el descuento será del 10% y si es un FORD ESCAPE el descuento será del 20%. Mostrar en html el coche seleccionado y el descuento que se
+// aplicara en base a lo que selecciono el usuario.
+
+
+// Seleccionando btn del HTML
+let btnFiesta = document.querySelector('#btnFiesta'); 
+let btnFocus = document.querySelector('#btnFocus');
+let btnEscape = document.querySelector('#btnEscape');
+
+function calDescuento(modelo){
+    let precio = 1000;
+
+    if(modelo === "FORD FIESTA"){
+        return precio - (precio*0.05);
+    }else if(modelo === "FORD FOCUS"){
+        return precio - (precio*0.10);
+    }else if(modelo === "FORD ESCAPE"){
+        return precio - (precio*0.20);
+    }
+}
+
+btnFiesta.addEventListener('click', ()=>{ // Si selecciona el btn FORD FIESTA
+    console.log("Precio total del FORD Fiesta con descuento del 5%: $"+calDescuento("FORD FIESTA").toFixed(2)); // Se le pasó un String al parámetro "modelo" de la función, esta vez no fue una variable como en los ejercicios del 1 al 3
+})
+
+btnFocus.addEventListener('click', ()=>{ // Si selecciona el btn FORD FOCUS
+    console.log("Precio total del FORD Focus con descuento del 10%: $"+calDescuento("FORD FOCUS").toFixed(2)); // Se le pasó un String al parámetro "modelo" de la función, esta vez no fue una variable como en los ejercicios del 1 al 3
+})
+
+btnEscape.addEventListener('click', ()=>{ // Si selecciona el btn FORD ESCAPE
+    console.log("Precio total del FORD Escape con descuento del 20%: $"+calDescuento("FORD ESCAPE").toFixed(2)); // Se le pasó un String al parámetro "modelo" de la función, esta vez no fue una variable como en los ejercicios del 1 al 3
+})
+
+
 
 // EJERCICIO 6: Crear una Función para calcular el descuento en viajes turísticos tomando en cuenta lo siguiente: Si el usuario introduce como origen la ciudad de Palma 
 // y como destino La costa del Sol, el descuento será de 5%, si el destino es Panchimalco el descuento será del 10% y si el destino es Puerto el Triunfo el descuento será del 15%.
@@ -107,7 +142,7 @@ let turistas = [
 
 function descuento(precio, destino) {
     if (destino === "Costa de Sol") {
-        return precio - (precio * 0.05); // Otra manera de retornar sin crear variables como en el Ejercicio 2
+        return precio - (precio * 0.05); // Otra manera de retornar sin crear variables a diferencia del Ejercicio 2 que sí se creó la variable "promedio"
     }
     else if (destino === "Panchimalco") {
         return precio - (precio * 0.10);
@@ -126,8 +161,8 @@ turistas.forEach((dato) => {
 })
 
 
-//EJERCICIO 7: Se realiza la carga de 10 valores enteros por teclado. Se desea conocer:
-/*• La cantidad de valores negativos ingresados.
+/* EJERCICIO 7: Se realiza la carga de 10 valores enteros por teclado. Se desea conocer:
+• La cantidad de valores negativos ingresados.
 • La cantidad de valores positivos ingresados.
 • La cantidad de múltiplos de 15.
 • El valor acumulado de los números ingresados que son pares.*/
@@ -169,8 +204,90 @@ console.log("Valor acumulado de números pares: " + valAcumPares);
 let index = [1,2,3,4,5,6,7,8,9,10];
 let numero = 7 // Número para multiplicar
 
-index.forEach((value)=>{
+index.forEach((value)=>{ //value es cada número del array [1..10]
     let resultado = value * numero;
     console.log(numero+"x"+value+" = "+resultado);
 })
 
+
+
+/*EJERCICIO 9: Crear programa donde se introduce una temperatura en Celsius y salga el resultado en Fahrenheit, una vez teniendo la temperatura en Fahrenheit deberá devolver lo siguiente:
+• Si ºF está entre 14 y 32, sale la frase “Temperatura baja”
+• Si ºF está entre 32 y 68, sale la frase “Temperatura adecuada”
+• Si ºF está entre 68 y 96, sale la frase “Temperatura alta”
+• Si no está entre ningún caso anterior la frase “Temperatura desconocida”*/
+
+let gCelsius = 25;
+
+function farenheit(temperatura){
+    let gFarenheit = (temperatura * 9/5) + 32;
+    console.log("Temperatura en Fahrenheit: " + gFarenheit.toFixed(2) + "°F"); // Imprimiendo Temperatura en Fahrenheit dentro de la función
+
+    if(gFarenheit >= 14 && gFarenheit < 32){
+        return "Temperatura baja";
+    }else if(gFarenheit >= 32 && gFarenheit < 68){
+        return "Temperatura adecuada";
+    }else if(gFarenheit >= 68 && gFarenheit < 96){
+        return "Temperatura alta";
+    }else{
+        return "Temperatura desconocida";
+    }
+}
+
+console.log(farenheit(gCelsius));
+
+
+
+/* EJERCICIO 10: Se cuenta con la siguiente información:
+• Las edades de 5 estudiantes del turno mañana.
+• Las edades de 6 estudiantes del turno tarde.
+• Las edades de 11 estudiantes del turno noche.
+Nota: Las edades de cada estudiante se deberán ingresar por la web. Lo que queremos devolver:
+• Obtener el promedio de las edades de cada turno (tres promedios).
+• Imprimir dichos promedios (promedio de cada turno).
+• Mostrar por pantalla un mensaje que indique cuál de los tres turnos tiene un promedio de edades mayor*/
+
+
+function calcularPromedios() {
+    // Obteneniendo todos los inputs por turno
+    let morningInputs = document.querySelectorAll('.edadTurnoMorning');
+    let tardeInputs = document.querySelectorAll('.edadTurnoTarde');
+    let nocheInputs = document.querySelectorAll('.edadTurnoNoche');
+
+    // Función para calcular el promedio de edades de un grupo de inputs
+    function calcularPromedio(inputs) {
+        let suma = 0; // almacenará la suma de todas las edades que el usuario ingrese
+        inputs.forEach((input) => {
+            let valor = parseInt(input.value); //input.value es para obtener el valor que se ingrresó y parseInt() convierte ese valor en número
+            //Si el campo está vacío o contiene letras, parseInt() devolverá NaN
+            if (!isNaN(valor)) { //isNaN(valor) devuelve true si valor es letras. Por eso se coloca !, para negar que valor es una letra y sí un numero
+                suma += valor; // Es igual a suma = suma + valor
+            }
+        });
+        return suma / inputs.length; // Retorna el promedio, inputs.length es la CANTIDAD de elementos del arreglo
+    }
+
+    // Calcular promedios pasándole los parámetros de los inputs ingresados
+    let promedioMorning = calcularPromedio(morningInputs); // Es mejor crear variable para guardar este dato, ya que se usará esa variable para imprimirlo en los if
+    let promedioTarde = calcularPromedio(tardeInputs);
+    let promedioNoche = calcularPromedio(nocheInputs);
+
+    // Imprimir los promedios
+    console.log("Promedio de edad - Turno Mañana: " + promedioMorning.toFixed(2));
+    console.log("Promedio de edad - Turno Tarde: " + promedioTarde.toFixed(2));
+    console.log("Promedio de edad - Turno Noche: " + promedioNoche.toFixed(2));
+
+    // Determinando cuál tiene el mayor promedio
+    let mensaje = ""; // Creando variable vacío para guardar string, similar a let numero = 0;
+    if (promedioMorning > promedioTarde && promedioMorning > promedioNoche) {
+        mensaje = "El turno con mayor promedio de edad es: Mañana";
+    } else if (promedioTarde > promedioMorning && promedioTarde > promedioNoche) {
+        mensaje = "El turno con mayor promedio de edad es: Tarde";
+    } else if (promedioNoche > promedioMorning && promedioNoche > promedioTarde) {
+        mensaje = "El turno con mayor promedio de edad es: Noche";
+    } else {
+        mensaje = "Dos o más turnos tienen el mismo promedio más alto";
+    }
+
+    console.log(mensaje);
+}
